@@ -36,7 +36,7 @@ class TestKF(unittest.TestCase):
         v = 2.3
 
         kf = self.KF(x,v,1.2)
-        kf.predict(dt=0.1)
+        kf.predict(0.1)
 
         self.assertEqual(kf.cov.shape,(2,2))
         self.assertEqual(kf.mean.shape,(2,))

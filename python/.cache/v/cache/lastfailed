@@ -1,8 +1,5 @@
 {
   "test_kf.py::TestKF": true,
   "test_kf.py::TestKF_0": true,
-  "test_kf.py::TestKF_1": true,
-  "test_kf.py::TestKF_1::test_after_calling_predict_x_and_P_are_of_right_shape": true,
-  "test_kf.py::TestKF_1::test_calling_predict_increase_state_uncertainty": true,
-  "test_kf.py::TestKF_1::test_can_construct_with_x_and_v": true
+  "test_kf.py::TestKF_1": true
 }
