@@ -32,7 +32,7 @@ public:
     G(iX) = 0.5 * dt * dt;
     G(iV) = dt;
 
-    const Matrix newP = F * m_cov * F + G * G.transpose() * m_accelVariance ;
+    const Matrix newP = F * m_cov * F.transpose() + G * G.transpose() * m_accelVariance ;
 
     m_cov = newP;
     m_mean = newX;

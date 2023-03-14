@@ -73,3 +73,31 @@ class TestKF(unittest.TestCase):
         det_after = np.linalg.det(kf.cov)
 
         self.assertLess(det_after,det_before)
+
+class TestKFPYthonAndCppYieldSameResults(unittest.TestCase):
+    def test_yield_same_results_with_predict(self):
+        x = 0.25
+        v = 2.3
+
+        kf_py = python_kf.KF(x,v,1.2)
+        kf_cpp = cpp_kf.KF(x,v,1.2)
+
+        for i in range(10):
+            kf_py.predict(0.1)
+            kf_cpp.predict(0.1)
+
+            self.assertTrue(np.allclose(kf_py.cov, kf_cpp.cov, 1e-6))
+            self.assertTrue(np.allclose(kf_py.mean, kf_cpp.mean, 1e-6))
+
+    def test_yield_same_results_with_update(self):
+        x = 0.25
+        v = 2.3
+
+        kf_py = python_kf.KF(x,v,1.2)
+        kf_cpp = cpp_kf.KF(x,v,1.2)
+
+        kf_py.update(0.1,0.1)
+        kf_cpp.update(0.1,0.1)
+
+        self.assertTrue(np.allclose(kf_py.cov, kf_cpp.cov, 1e-6))
+        self.assertTrue(np.allclose(kf_py.mean, kf_cpp.mean, 1e-6))
